@@ -36,7 +36,22 @@
 		}
 
 		function enviarFormulario(){
-			alert('enviar formulario')
+			//alert('enviar formulario')
+			//recuperar datos, y eliminar espacios ini y final
+			let nombre = $('#nombre').val().trim()
+			let apellidos = $('#apellidos').val().trim()
+
+			try	{
+				//opcional validar datos
+				if((nombre == '') || (apellidos == '')){
+					throw('Obligatorio nombre y apellidos')
+				}
+
+				//enviar datos al server
+
+			}catch(e) {
+				alert(e)
+			}
 		}
 	</script>
 </head>
