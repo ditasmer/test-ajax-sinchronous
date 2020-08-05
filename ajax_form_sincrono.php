@@ -1,22 +1,3 @@
- <?php
-	//inicializar variables
-	$error=$mensaje=$nombre=$apellidos=null;
-
-	//comprobar si hemos pulsado el botón enviar
-	if(isset($_POST['enviar'])) {
-		//recuperar la información del formulario
-		$nombre = trim($_POST['nombre']);
-		$apellidos = trim($_POST['apellidos']);
-
-		//validar que estén informados
-		if ($nombre=='' || $apellidos=='') {
-			$error = 'nombre y apellidos obligatorios';
-		} else {
-			//confeccionar el mensaje de respuesta
-			$mensaje = "$nombre $apellidos";
-		}
-	}
-?> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,10 +28,18 @@
 					throw('Obligatorio nombre y apellidos')
 				}
 
-				//enviar datos al server
+				//enviar datos al server: $.post(param1, param2, param3)
+				//param1:localizacion del servicio
+				//param2: datos que enviamos(calve:valor)
+				//param3: callback que el servidor ejecuta 
+				$.post('webserver/ajax_procesa_form.php', {'nombre': nombre, 'apellidos': apellidos}, procesaRespuesta)
 
 			}catch(e) {
 				alert(e)
+			}
+
+			function procesaRespuesta(respuesta){
+				alert(respuesta)
 			}
 		}
 	</script>
