@@ -10,10 +10,10 @@
 
 		//validar que estén informados
 		if ($nombre=='' || $apellidos=='') {
-			$mensaje = 'nombre y apellidos obligatorios';
+			$mensaje = '10nombre y apellidos obligatorios';
 		} else {
 			//confeccionar el mensaje de respuesta
-			$mensaje = "$nombre $apellidos";
+			$mensaje = "00$nombre $apellidos";
 		}
 
 		//enviar mensaje de respuesta, tanto si es error como si no

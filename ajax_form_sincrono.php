@@ -25,7 +25,7 @@
 			try	{
 				//opcional validar datos
 				if((nombre == '') || (apellidos == '')){
-					throw('Obligatorio nombre y apellidos')
+					//throw('Obligatorio nombre y apellidos')
 				}
 
 				//enviar datos al server: $.post(param1, param2, param3)
@@ -37,10 +37,19 @@
 			}catch(e) {
 				alert(e)
 			}
+		}
 
-			function procesaRespuesta(respuesta){
+		function procesaRespuesta(respuesta){
 				alert(respuesta)
-			}
+
+				//identificar las dos primeras posiciones de la respuesta para saber si es correcta o error
+				if(respuesta.substring(0, 2) == '00'){
+					alert(respuesta.substring(0, 2))
+					$('#mensaje').val(respuesta.substring(2))
+				} else{
+					alert(respuesta.substring(0, 2))
+					$('#error').text(respuesta.substring(2))
+				}
 		}
 	</script>
 </head>
@@ -51,7 +60,7 @@
 		<label>Apellidos</label>
 		<input type="text" id='apellidos'><br><br>
 		<label></label>
-		<input type="submit" id='enviar' value="Enviar"><br><br>
+		<input type="button" id='enviar' value="Enviar"><br><br>
 		<label></label>
 		<textarea id="mensaje"></textarea><br>
 		<span id="error"></span>
