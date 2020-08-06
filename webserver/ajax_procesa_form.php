@@ -16,6 +16,9 @@
 			$mensaje = "00$nombre $apellidos";
 		}
 
+		//retardo en la respuesta
+		sleep(2);
+
 		//enviar mensaje de respuesta, tanto si es error como si no
 		echo $mensaje;
 	//}

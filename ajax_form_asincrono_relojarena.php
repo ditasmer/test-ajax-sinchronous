@@ -41,12 +41,20 @@
 					data: {'nombre': nombre, 'apellidos': apellidos},
 					beforeSend: function(){
 						//acciones a realizar mientras el server envia respuesta
+						//aparece el reloj 
+						$('#reloj').css('display', 'block')
 					},
-					success: function(){
+					success: function(respuesta){
 						//acciones a realizar cuando se recibe la respuesta
+						procesaRespuesta(respuesta);
+
+						//desaparece el reloj porque ha habido respuesta
+						$('#reloj').css('display', 'none')
 					},
-					error: function(){
+					error: function(error){
 						//acciones a realizar en caso de error en la petición
+						console.log(error);
+						alert('Error en la petición')
 					},
 					complete: function(){
 						//acciones a realizar cuando se completa la peticion 
@@ -61,14 +69,14 @@
 		}
 
 		function procesaRespuesta(respuesta){
-				alert(respuesta)
+				//alert(respuesta)
 
 				//identificar las dos primeras posiciones de la respuesta para saber si es correcta o error
 				if(respuesta.substring(0, 2) == '00'){
-					alert(respuesta.substring(0, 2))
+					//alert(respuesta.substring(0, 2))
 					$('#mensaje').val(respuesta.substring(2))
 				} else{
-					alert(respuesta.substring(0, 2))
+					//alert(respuesta.substring(0, 2))
 					$('#error').text(respuesta.substring(2))
 				}
 		}
@@ -85,6 +93,8 @@
 		<label></label>
 		<textarea id="mensaje"></textarea><br>
 		<span id="error"></span>
+		<br><br>
+		<img src="img/reloj.gif" id="reloj" style="display: none;">
 	</form>
 </body>
 </html>
