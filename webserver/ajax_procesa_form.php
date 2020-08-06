@@ -1,4 +1,4 @@
- <?php
+<?php
 	//inicializar variables
 	//$error=$mensaje=$nombre=$apellidos=null;
 
