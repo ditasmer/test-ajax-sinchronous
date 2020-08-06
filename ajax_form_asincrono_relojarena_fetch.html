@@ -40,6 +40,18 @@
 				//enviar datos al server
 				let url_server = "webserver/ajax_procesa_form.php";
 				fetch(url_server, parametros)
+				.then(function(acuse){
+					console.log(acuse)
+					if(acuse.ok){
+						//acciones a realizar mientras esperamos la respuesta
+						document.querySelector('#reloj').style.display = 'block';
+						//que tipo de respuesta esperamos: text, json, xml, blob
+						return acuse.text();
+					} else {
+						console.log(acuse)
+						//throw('Algo ha ido mal en la peticion')
+					}
+				})
 
 			}catch(e) {
 				alert(e)
