@@ -26,8 +26,20 @@
 				if((nombre == '') || (apellidos == '')){
 					throw('Obligatorio nombre y apellidos')
 				}
+				//encapsular datos q vamos a enviar al servidor
+				let datos = new FormData();
+				datos.append('nombre', nombre)
+				datos.append('apellidos', apellidos)
+
+				//definir los parametros de peticion
+				let parametros = {
+					method: 'post',
+					body: datos
+				}
+
 				//enviar datos al server
-				alert(nombre +' '+apellidos)
+				let url_server = "webserver/ajax_procesa_form.php";
+				fetch(url_server, parametros)
 
 			}catch(e) {
 				alert(e)
