@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		label {width:120px;display: inline-block;}
+		form {width: 300px; border:1px solid grey;padding:20px;margin:auto;}
+		img#reloj {width: 50px; display: none;}
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function() {
+			//activar el listener boton enviar	
+			document.getElementById('enviar').onclick = enviarFormulario;
+		}
+
+		function enviarFormulario(){
+			//alert('enviar formulario')
+			//recuperar datos, y eliminar espacios ini y final
+			let nombre = document.querySelector('#nombre').value.trim();
+			let apellidos = document.querySelector('#apellidos').value.trim();
+
+			try	{
+				//opcional validar datos
+				if((nombre == '') || (apellidos == '')){
+					throw('Obligatorio nombre y apellidos')
+				}
+				//enviar datos al server
+				alert(nombre +' '+apellidos)
+
+			}catch(e) {
+				alert(e)
+			}
+		}
+
+		function procesaRespuesta(respuesta){
+			//alert(respuesta)
+			//limpiar respuesta anteriorres del form
+			document.querySelector('#mensaje').value = '';
+			document.querySelector('#error').innerText = '';
+			
+			//indentificar las dos primeras posiciones de la respuesta para saber si es correcta
+			if(respuesta.substring(0, 2) == '00'){
+					//alert(respuesta.substring(0, 2))
+					document.querySelector('#mensaje').value = respuesta.substring(2);
+			} else{
+					//alert(respuesta.substring(0, 2))
+					document.querySelector('#error').innerText = respuesta.substring(2);
+			}
+			
+		}
+
+	</script>
+</head>
+<body>
+	<form>
+		<label>Nombre</label>
+		<input type="text" id='nombre'><br>
+		<label>Apellidos</label>
+		<input type="text" id='apellidos'><br><br>
+		<label></label>
+		<input type="button" id='enviar' value="Enviar"><br><br>
+		<label></label>
+		<textarea id="mensaje"></textarea><br>
+		<span id="error"></span>
+		<br><br>
+		<img src="img/reloj.gif" id="reloj" style="display: none;">
+	</form>
+</body>
+</html>
