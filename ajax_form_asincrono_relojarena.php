@@ -58,6 +58,7 @@
 					},
 					complete: function(){
 						//acciones a realizar cuando se completa la peticion 
+						alert('completada petición')
 					}
 
 				})
